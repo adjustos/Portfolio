@@ -8,7 +8,7 @@ With a solid foundation in SQL, I possess advanced knowledge and practical exper
 
 # Data Analysis Expertise
 
-My data analysis skills span a wide range of functionalities, from cleaning and transforming raw data to executing complex statistical analyses. My prowess in using statistical programming languages like R and Python, alongside my competency in SQL, allows me to manage large data sets efficiently. I am proficient in hypothesis testing, predictive modeling, and segmentation analysis, allowing me to extract trends, patterns, and insights from any dataset. 
+My data analysis skills span a wide range of functionalities, from cleaning and transforming raw data to executing complex statistical analyses. My prowess in using statistical programming languages like Python, alongside my competency in SQL, allows me to manage large data sets efficiently. I am proficient in hypothesis testing, predictive modeling, and segmentation analysis, allowing me to extract trends, patterns, and insights from any dataset. 
 
 # Tools and Technologies
 
