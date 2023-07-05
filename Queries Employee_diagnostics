@@ -1,0 +1,41 @@
+
+1. List all subjects and their respective companies
+
+SELECT s.subject_name, c.company_name
+FROM subjects s
+JOIN subject_companies sc ON s.subject_id = sc.subject_id
+JOIN companies c ON sc.company_id = c.company_id;
+
+
+2. List all subjects, along with the number of tests they've taken, who are older than 40 and work for a company with a 'One' in its name**' ||
+    
+SELECT s.subject_name, COUNT(t.test_id) as test_count
+FROM subjects s
+JOIN tests t ON s.subject_id = t.subject_id
+JOIN subject_companies sc ON s.subject_id = sc.subject_id
+JOIN companies c ON sc.company_id = c.company_id
+WHERE s.age > 40 AND c.company_name LIKE '%One%'
+GROUP BY s.subject_name;
+
+
+3. List all companies and the average attention level of tests taken by subjects working for these companies
+SELECT c.company_name, AVG(r.attention_level) as average_attention_level
+FROM companies c
+JOIN subject_companies sc ON c.company_id = sc.company_id
+JOIN tests t ON sc.subject_id = t.subject_id
+JOIN results r ON t.test_id = r.test_id
+GROUP BY c.company_name;
+
+4. Update the risk level of job positions to 10 if the average attention level of subjects working in these positions is below 5
+
+UPDATE job_positions
+SET risk_level = 10
+WHERE position_id IN (
+    SELECT jp.position_id
+    FROM job_positions jp
+    JOIN subjects s ON jp.company_id = s.company_id
+    JOIN tests t ON s.subject_id = t.subject_id
+    JOIN results r ON t.test_id = r.test_id
+    GROUP BY jp.position_id
+    HAVING AVG(r.attention_level) < 5
+);
