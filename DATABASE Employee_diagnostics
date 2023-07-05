@@ -1,0 +1,136 @@
+REATE DATABASE Employee_diagnostics;
+
+USE Employee_diagnostics;
+
+CREATE TABLE subjects (
+    subject_id INT PRIMARY KEY,
+    subject_name VARCHAR(255),
+    age INT,
+    sleep_time TIME
+);
+
+CREATE TABLE testers (
+    tester_id INT PRIMARY KEY,
+    tester_name VARCHAR(255)
+);
+
+CREATE TABLE tests (
+    test_id INT PRIMARY KEY,
+    subject_id INT,
+    tester_id INT,
+    test_time DATETIME,
+    FOREIGN KEY (subject_id) REFERENCES subjects(subject_id),
+    FOREIGN KEY (tester_id) REFERENCES testers(tester_id)
+);
+
+CREATE TABLE companies (
+    company_id INT PRIMARY KEY,
+    company_name VARCHAR(255)
+);
+
+CREATE TABLE job_positions (
+    position_id INT PRIMARY KEY,
+    position_name VARCHAR(255),
+    company_id INT,
+    risk_level INT,
+    FOREIGN KEY (company_id) REFERENCES companies(company_id)
+);
+
+CREATE TABLE results (
+    result_id INT PRIMARY KEY,
+    test_id INT,
+    attention_level INT,
+    FOREIGN KEY (test_id) REFERENCES tests(test_id)
+);
+
+CREATE TABLE subject_companies (
+    subject_id INT,
+    company_id INT,
+    FOREIGN KEY (subject_id) REFERENCES subjects(subject_id),
+    FOREIGN KEY (company_id) REFERENCES companies(company_id),
+    PRIMARY KEY (subject_id, company_id)
+);
+
+-- Inserting into subjects
+INSERT INTO subjects VALUES (1, 'Nina Dobina', 35, '22:00:00');
+INSERT INTO subjects VALUES (2, 'Natan Banano', 30, '23:00:00');
+INSERT INTO subjects VALUES (3, 'Tal Sam', 40, '22:30:00');
+INSERT INTO subjects VALUES (4, 'ruth Johnson', 50, '23:00:00');
+INSERT INTO subjects VALUES (5, 'Charlie Dadon', 45, '22:30:00');
+INSERT INTO subjects VALUES (6, 'David Willi', 38, '22:45:00');
+INSERT INTO subjects VALUES (7, 'Tomer David', 42, '23:15:00');
+INSERT INTO subjects VALUES (8, 'Adir Miller', 37, '22:00:00');
+INSERT INTO subjects VALUES (9, 'Grace Wilson', 46, '23:00:00');
+INSERT INTO subjects VALUES (10, 'Shahar Moore', 39, '22:30:00');
+
+-- Inserting into testers
+INSERT INTO testers VALUES (1, 'Tester One');
+INSERT INTO testers VALUES (2, 'Tester Two');
+INSERT INTO testers VALUES (3, 'Tester Three');
+INSERT INTO testers VALUES (4, 'Tester Four');
+INSERT INTO testers VALUES (5, 'Tester Five');
+INSERT INTO testers VALUES (6, 'Tester Six');
+INSERT INTO testers VALUES (7, 'Tester Seven');
+INSERT INTO testers VALUES (8, 'Tester Eight');
+INSERT INTO testers VALUES (9, 'Tester Nine');
+INSERT INTO testers VALUES (10, 'Tester Ten');
+
+-- Inserting into tests
+INSERT INTO tests VALUES (1, 1, 1, '2023-05-27 10:00:00');
+INSERT INTO tests VALUES (2, 2, 1, '2023-05-27 11:00:00');
+INSERT INTO tests VALUES (3, 3, 2, '2023-05-28 10:00:00');
+INSERT INTO tests VALUES (4, 4, 2, '2023-05-28 11:00:00');
+INSERT INTO tests VALUES (5, 5, 3, '2023-05-29 10:00:00');
+INSERT INTO tests VALUES (6, 6, 3, '2023-05-29 11:00:00');
+INSERT INTO tests VALUES (7, 7, 4, '2023-05-30 10:00:00');
+INSERT INTO tests VALUES (8, 8, 4, '2023-05-30 11:00:00');
+INSERT INTO tests VALUES (9, 9, 5, '2023-05-31 10:00:00');
+INSERT INTO tests VALUES (10, 10, 5, '2023-05-31 11:00:00');
+
+-- Inserting into companies
+INSERT INTO companies VALUES (1, 'Company One');
+INSERT INTO companies VALUES (2, 'Company Two');
+INSERT INTO companies VALUES (3, 'Company Three');
+INSERT INTO companies VALUES (4, 'Company Four');
+INSERT INTO companies VALUES (5, 'Company Five');
+INSERT INTO companies VALUES (6, 'Company Six');
+INSERT INTO companies VALUES (7, 'Company Seven');
+INSERT INTO companies VALUES (8, 'Company Eight');
+INSERT INTO companies VALUES (9, 'Company Nine');
+INSERT INTO companies VALUES (10, 'Company Ten');
+
+-- Inserting into job_positions
+INSERT INTO job_positions VALUES (1, 'Truck Driver', 1, 8);
+INSERT INTO job_positions VALUES (2, 'Pilot', 2, 9);
+INSERT INTO job_positions VALUES (3, 'Nurse', 3, 7);
+INSERT INTO job_positions VALUES (4, 'Doctor', 4, 10);
+INSERT INTO job_positions VALUES (5, 'Air Traffic Controller', 5, 9);
+INSERT INTO job_positions VALUES (6, 'Train Operator', 6, 8);
+INSERT INTO job_positions VALUES (7, 'Ship Captain', 7, 8);
+INSERT INTO job_positions VALUES (8, 'Crane Operator', 8, 8);
+INSERT INTO job_positions VALUES (9, 'Bus Driver', 9, 7);
+INSERT INTO job_positions VALUES (10, 'Firefighter', 10, 9);
+
+-- Inserting into results
+INSERT INTO results VALUES (1, 1, 7);
+INSERT INTO results VALUES (2, 2, 8);
+INSERT INTO results VALUES (3, 3, 7);
+INSERT INTO results VALUES (4, 4, 8);
+INSERT INTO results VALUES (5, 5, 6);
+INSERT INTO results VALUES (6, 6, 7);
+INSERT INTO results VALUES (7, 7, 8);
+INSERT INTO results VALUES (8, 8, 7);
+INSERT INTO results VALUES (9, 9, 8);
+INSERT INTO results VALUES (10, 10, 7);
+
+-- Inserting into subject_companies
+INSERT INTO subject_companies VALUES (1, 1);
+INSERT INTO subject_companies VALUES (1, 2);
+INSERT INTO subject_companies VALUES (2, 1);
+INSERT INTO subject_companies VALUES (2, 2);
+INSERT INTO subject_companies VALUES (3, 1);
+INSERT INTO subject_companies VALUES (3, 2);
+INSERT INTO subject_companies VALUES (4, 2);
+INSERT INTO subject_companies VALUES (5, 1);
+INSERT INTO subject_companies VALUES (5, 2);
+INSERT INTO subject_companies VALUES (6, 1);
